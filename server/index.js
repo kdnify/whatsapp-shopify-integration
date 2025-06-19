@@ -29,11 +29,13 @@ const corsOptions = {
     
     const allowedOrigins = [
       'http://localhost:3000',
+      'https://whatsapp-shopify-app.onrender.com', // Add deployed frontend URL
       process.env.FRONTEND_URL,
       process.env.CORS_ORIGIN,
       // Add Shopify admin origins
       /\.myshopify\.com$/,
-      /\.shopify\.com$/
+      /\.shopify\.com$/,
+      /\.onrender\.com$/ // Allow all onrender.com subdomains
     ].filter(Boolean);
     
     const isAllowed = allowedOrigins.some(allowed => {

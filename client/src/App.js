@@ -7,6 +7,7 @@ import Setup from './components/Setup';
 import Analytics from './components/Analytics';
 import Settings from './components/Settings';
 import Navigation from './components/Navigation';
+import { getApiUrl } from './utils/api';
 import './App.css';
 
 function App() {
@@ -36,7 +37,9 @@ function App() {
 
   const fetchStoreData = async (id) => {
     try {
-      const response = await fetch(`${process.env.REACT_APP_API_URL || 'http://localhost:5000'}/api/stores/${id}`);
+      const apiUrl = getApiUrl();
+      
+      const response = await fetch(`${apiUrl}/api/stores/${id}`);
       const data = await response.json();
       
       if (data.success) {

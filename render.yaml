@@ -11,6 +11,10 @@ services:
         value: production
       - key: PORT
         sync: false
+      - key: FRONTEND_URL
+        value: https://whatsapp-shopify-app.onrender.com
+      - key: CORS_ORIGIN
+        value: https://whatsapp-shopify-app.onrender.com
       - key: MONGODB_URI
         sync: false
       - key: SHOPIFY_API_KEY

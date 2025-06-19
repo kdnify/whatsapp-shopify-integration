@@ -12,6 +12,7 @@ import {
   SkeletonDisplayText,
   SkeletonBodyText
 } from '@shopify/polaris';
+import { getApiUrl } from '../utils/api';
 
 function Analytics({ storeId, store }) {
   const [analytics, setAnalytics] = useState(null);
@@ -26,7 +27,7 @@ function Analytics({ storeId, store }) {
     setLoading(true);
     try {
       const response = await fetch(
-        `${process.env.REACT_APP_API_URL || 'http://localhost:5000'}/api/whatsapp/analytics/${storeId}?days=${timeRange}`
+        `${getApiUrl()}/api/whatsapp/analytics/${storeId}?days=${timeRange}`
       );
       const data = await response.json();
       

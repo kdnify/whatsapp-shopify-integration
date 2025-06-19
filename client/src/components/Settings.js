@@ -12,6 +12,7 @@ import {
   Text,
   Modal
 } from '@shopify/polaris';
+import { getApiUrl } from '../utils/api';
 
 function Settings({ storeId, store, onUpdate }) {
   const [features, setFeatures] = useState(store.enabledFeatures || {
@@ -37,7 +38,7 @@ function Settings({ storeId, store, onUpdate }) {
     setMessage('');
 
     try {
-      const response = await fetch(`${process.env.REACT_APP_API_URL || 'http://localhost:5000'}/api/stores/${storeId}`, {
+      const response = await fetch(`${getApiUrl()}/api/stores/${storeId}`, {
         method: 'PATCH',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
@@ -70,7 +71,7 @@ function Settings({ storeId, store, onUpdate }) {
     setMessage('');
 
     try {
-      const response = await fetch(`${process.env.REACT_APP_API_URL || 'http://localhost:5000'}/api/whatsapp/test-message`, {
+      const response = await fetch(`${getApiUrl()}/api/whatsapp/test-message`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
@@ -183,7 +184,7 @@ function Settings({ storeId, store, onUpdate }) {
         <Card title="Opt-in Widget" sectioned>
           <Stack vertical spacing="loose">
             <p>Add the WhatsApp opt-in widget to your store to start collecting customer phone numbers for automation.</p>
-            <Button url={`/api/whatsapp/widget/${storeId}`} external>
+            <Button url={`${getApiUrl()}/api/whatsapp/widget/${storeId}`} external>
               Get Widget Code
             </Button>
           </Stack>
@@ -216,7 +217,7 @@ function Settings({ storeId, store, onUpdate }) {
               Reconfigure WhatsApp API
             </Button>
             <TextContainer>
-              <p><strong>Webhook URL:</strong> {process.env.REACT_APP_API_URL || 'http://localhost:5000'}/webhooks/whatsapp</p>
+              <p><strong>Webhook URL:</strong> {getApiUrl()}/webhooks/whatsapp</p>
               <p><strong>Verify Token:</strong> Use the token from your WhatsApp setup</p>
             </TextContainer>
           </Stack>

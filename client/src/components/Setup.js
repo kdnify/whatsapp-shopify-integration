@@ -13,6 +13,7 @@ import {
   Checkbox,
   Spinner
 } from '@shopify/polaris';
+import { getApiUrl } from '../utils/api';
 
 function Setup({ storeId, store, onSetupComplete }) {
   const [formData, setFormData] = useState({
@@ -57,7 +58,7 @@ function Setup({ storeId, store, onSetupComplete }) {
     setError('');
 
     try {
-      const response = await fetch(`${process.env.REACT_APP_API_URL || 'http://localhost:5000'}/api/whatsapp/test-message`, {
+      const response = await fetch(`${getApiUrl()}/api/whatsapp/test-message`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
@@ -91,7 +92,7 @@ function Setup({ storeId, store, onSetupComplete }) {
     setError('');
 
     try {
-      const response = await fetch(`${process.env.REACT_APP_API_URL || 'http://localhost:5000'}/api/whatsapp/configure`, {
+      const response = await fetch(`${getApiUrl()}/api/whatsapp/configure`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({

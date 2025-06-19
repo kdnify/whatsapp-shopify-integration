@@ -14,6 +14,7 @@ import {
   SkeletonDisplayText,
   SkeletonBodyText
 } from '@shopify/polaris';
+import { getApiUrl } from '../utils/api';
 
 function Dashboard({ storeId, store }) {
   const [dashboardData, setDashboardData] = useState(null);
@@ -24,7 +25,7 @@ function Dashboard({ storeId, store }) {
   useEffect(() => {
     const fetchDashboardData = async () => {
       try {
-        const response = await fetch(`${process.env.REACT_APP_API_URL || 'http://localhost:5000'}/api/stores/${storeId}/dashboard`);
+        const response = await fetch(`${getApiUrl()}/api/stores/${storeId}/dashboard`);
         const data = await response.json();
         
         if (data.success) {
@@ -42,7 +43,7 @@ function Dashboard({ storeId, store }) {
 
   const getWidgetCode = async () => {
     try {
-      const response = await fetch(`${process.env.REACT_APP_API_URL || 'http://localhost:5000'}/api/whatsapp/widget/${storeId}`);
+      const response = await fetch(`${getApiUrl()}/api/whatsapp/widget/${storeId}`);
       const data = await response.json();
       
       if (data.success) {
